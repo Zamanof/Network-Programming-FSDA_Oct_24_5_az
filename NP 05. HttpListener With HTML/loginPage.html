@@ -3,8 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css">
-   
+    
     <title></title>
 </head>
 <body>
@@ -26,7 +25,7 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form method="post" action="http://localhost:27001/">
+            <form action="#">
                 <h1>Sign in</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -34,8 +33,8 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your account</span>
-                <input type="text" placeholder="Login" name="login"/>
-                <input type="password" placeholder="Password" name="password"/>
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
                 <a href="#">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
@@ -66,17 +65,4 @@
     </footer>
 
 </body>
-<script>
-    const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
-
-signUpButton.addEventListener('click', () => {
-container.classList.add("right-panel-active");
-});
-
-signInButton.addEventListener('click', () => {
-container.classList.remove("right-panel-active");
-});
-</script>
 </html>
