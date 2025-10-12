@@ -1,10 +1,14 @@
-﻿using MailKit.Net.Smtp;
+﻿using MailKit;
+using MailKit.Net.Imap;
+using MailKit.Net.Smtp;
+using MailKit.Search;
 using MimeKit;
 //using System.Net;
 //using System.Net.Mail;
 
 //SMTP();
-SMTPMailKit();
+//SMTPMailKit();
+IMAP();
 
 //void SMTP() {
 //    var client = new SmtpClient("smtp.gmail.com", 587);
@@ -44,6 +48,7 @@ void SMTPMailKit()
         MailboxAddress.Parse("romandadasov13@gmail.com"),
         MailboxAddress.Parse("abbasesgerli343@gmail.com"),
         MailboxAddress.Parse("ayxanm803@gmail.com"),
+        MailboxAddress.Parse("zamanov@itstep.org.com"),
         MailboxAddress.Parse("zamanov@itstep.org")
     });
     message.Subject = "Exam";
@@ -67,4 +72,25 @@ void SMTPMailKit()
     client.Send(message);
     client.Disconnect(true);
 }
-void IMAP() { }
+void IMAP() {
+    var imapClient = new ImapClient();
+    imapClient.Connect("imap.gmail.com", 993, true);
+    imapClient.Authenticate("fbms.1223@gmail.com", "noue davr nrtd bawu");
+
+    var inbox = imapClient.Inbox;
+    inbox.Open(FolderAccess.ReadWrite);
+
+    var ids = inbox.Search(SearchQuery.All);
+    //foreach (var id in ids)
+    //{
+    //    Console.WriteLine($"{id} -> {inbox.GetMessage(id).TextBody}");
+    //}
+
+    //inbox.SetFlags(new UniqueId(132), MessageFlags.Deleted, true);
+    //inbox.AddFlags(ids, MessageFlags.Seen, true);
+    inbox.AddFlags(ids, MessageFlags.Deleted, true);
+
+    inbox.Expunge();
+    inbox.Close();
+
+}
